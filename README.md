@@ -1,4 +1,4 @@
-# MediTrack - Medication Ordering & Administration System
+# MediFlow - Medication Ordering & Administration System
 
 A healthcare management prototype designed to streamline medication ordering, scheduling, and administration tracking in clinical settings.
 
