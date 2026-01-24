@@ -1,73 +1,33 @@
-# Welcome to your Lovable project
+# MediTrack - Medication Ordering & Administration System
 
-## Project info
+A healthcare management prototype designed to streamline medication ordering, scheduling, and administration tracking in clinical settings.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Project Overview
+Built as part of UI/UX Design coursework at the University of the West Indies, this application demonstrates user-centered design principles applied to healthcare technology.
 
-## How can I edit this code?
+##  Features
+- User authentication and role-based access
+- Medication order management
+- Administration scheduling and tracking
+- Real-time order status updates
+- Intuitive, accessible user interface
 
-There are several ways of editing your application.
+##  Technologies Used
+- Frontend: HTML, CSS, JavaScript, [React/other framework if used]
+- Backend: [Your backend tech]
+- Database: [Your database if applicable]
 
-**Use Lovable**
+##  Live Demo
+https://mediflowcompanion.lovable.app
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📸 Screenshots
+<img width="626" height="696" alt="Screenshot 2026-01-24 at 2 40 27 AM" src="https://github.com/user-attachments/assets/0fd0d7dd-2b3b-4037-8554-f39418035519" />
+<img width="952" height="658" alt="Screenshot 2026-01-24 at 2 40 58 AM" src="https://github.com/user-attachments/assets/13f0fbe6-b86b-49d8-91c2-49b304f9e130" />
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 💡 Future Enhancements
+- Integration with pharmacy management systems
+- Mobile responsive design
+- Medication interaction warnings
+- Analytics dashboard for healthcare providers
