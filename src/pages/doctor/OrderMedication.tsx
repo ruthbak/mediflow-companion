@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { patients, medications } from '@/lib/mockData';
+import { useMedicationOrders } from '@/contexts/MedicationOrdersContext';
 
 const frequencies = [
   'Once daily',
@@ -35,6 +35,7 @@ export default function OrderMedication() {
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
   const patientId = searchParams.get('patientId');
+  const { patients, medications, addOrder, getPatientById, getMedicationById } = useMedicationOrders();
 
   const [selectedPatient, setSelectedPatient] = useState(patientId || '');
   const [medicationSearch, setMedicationSearch] = useState('');
@@ -43,8 +44,8 @@ export default function OrderMedication() {
   const [frequency, setFrequency] = useState('');
   const [route, setRoute] = useState('');
 
-  const patient = patients.find((p) => p.id === selectedPatient);
-  const medication = medications.find((m) => m.id === selectedMedication);
+  const patient = getPatientById(selectedPatient);
+  const medication = getMedicationById(selectedMedication);
 
   const filteredMedications = useMemo(() => {
     if (!medicationSearch) return [];
@@ -79,12 +80,24 @@ export default function OrderMedication() {
       return;
     }
 
-    toast({
-      title: 'Order Sent Successfully',
-      description: `${medication?.name} ${dosage} ordered for ${patient?.name}`,
-    });
+    if (patient && medication) {
+      addOrder({
+        patientId: patient.id,
+        patient,
+        medication,
+        dosage,
+        frequency,
+        route,
+        orderedBy: 'Dr. Smith', // In real app, get from auth context
+      });
 
-    navigate('/dashboard');
+      toast({
+        title: 'Order Sent Successfully',
+        description: `${medication.name} ${dosage} ordered for ${patient.name}`,
+      });
+
+      navigate('/dashboard');
+    }
   };
 
   return (
