@@ -1,26 +1,23 @@
-import { useState } from 'react';
 import { Package, Clock, CheckCircle, MessageSquare, AlertTriangle } from 'lucide-react';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useMedicationOrders } from '@/contexts/MedicationOrdersContext';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { medicationOrders as initialOrders } from '@/lib/mockData';
 import { cn } from '@/lib/utils';
 
 export default function PharmacyOrders() {
   const { toast } = useToast();
-  const [orders, setOrders] = useState(initialOrders);
+  const { orders, updateOrderStatus } = useMedicationOrders();
 
   const pendingOrders = orders.filter((o) => o.status === 'pending');
   const verifiedOrders = orders.filter((o) => o.status === 'verified');
   const dispensedOrders = orders.filter((o) => o.status === 'dispensed');
 
   const handleProcess = (orderId: string, newStatus: 'verified' | 'dispensed') => {
-    setOrders((prev) =>
-      prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
-    );
+    updateOrderStatus(orderId, newStatus);
     
     const order = orders.find((o) => o.id === orderId);
     toast({

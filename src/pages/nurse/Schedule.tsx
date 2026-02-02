@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { Clock, CheckCircle2, ChevronRight, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useMedicationOrders } from '@/contexts/MedicationOrdersContext';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { medicationOrders as initialOrders } from '@/lib/mockData';
 import { cn } from '@/lib/utils';
 
 export default function NurseSchedule() {
   const { user } = useAuth();
   const { toast } = useToast();
-  const [orders, setOrders] = useState(initialOrders);
+  const { orders, updateOrderStatus } = useMedicationOrders();
   const [lastMarked, setLastMarked] = useState<string | null>(null);
 
   const now = new Date();
@@ -41,9 +41,7 @@ export default function NurseSchedule() {
   };
 
   const handleMarkAsGiven = (orderId: string) => {
-    setOrders((prev) =>
-      prev.map((o) => (o.id === orderId ? { ...o, status: 'administered' as const } : o))
-    );
+    updateOrderStatus(orderId, 'administered');
     setLastMarked(orderId);
 
     const order = orders.find((o) => o.id === orderId);
@@ -57,9 +55,7 @@ export default function NurseSchedule() {
 
   const handleUndo = () => {
     if (lastMarked) {
-      setOrders((prev) =>
-        prev.map((o) => (o.id === lastMarked ? { ...o, status: 'dispensed' as const } : o))
-      );
+      updateOrderStatus(lastMarked, 'dispensed');
       setLastMarked(null);
       toast({
         title: 'Undone',
